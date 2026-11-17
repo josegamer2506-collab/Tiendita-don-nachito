@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="description" content="Tiendita Don Nacho: electrodomésticos para tu hogar. Tienda de demostración (proyecto académico).">
+<title>Tiendita Don Nacho</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="saltar" href="#catalogo">Saltar al catálogo</a>
+<div id="avisos" aria-live="polite"></div>
+<header class="barra-superior">
+    <div class="barra-contenido">
+        <h1 class="marca">🛒 Tiendita Don Nacho</h1>
+
+        <nav class="pestanas" aria-label="Principal">
+            <button id="seguimientoBtn" type="button" class="pestana">📦 Seguimiento</button>
+            <button id="favoritosBtn" type="button" class="pestana">❤️ Favoritos</button>
+            <button id="ayudaBtn" type="button" class="pestana">❓ Ayuda</button>
+            <span class="pestanas-separador" aria-hidden="true"></span>
+            <div id="usuarioSesion" class="usuario-sesion">
+                <span id="nombreUsuario">👤 Invitado</span>
+                <button id="loginBtn" type="button" class="pestana">🔐 Iniciar sesión</button>
+                <button id="cuentaBtn" type="button" class="pestana" hidden>📋 Mi cuenta</button>
+                <a id="adminLink" class="pestana" href="admin.html" hidden>⚙️ Panel</a>
+                <button id="logoutBtn" type="button" class="pestana" hidden>🚪 Cerrar sesión</button>
+            </div>
+        </nav>
+
+        <button id="carritoBtn" type="button" class="carrito-barra" aria-label="Abrir carrito">
+            <span aria-hidden="true">🛒</span> Carrito <span class="carrito-contador" id="contador">0</span>
+        </button>
+    </div>
+</header>
+
+<button id="carritoFab" type="button" class="carrito-fab" aria-label="Abrir carrito (0 productos)" hidden>
+    <span aria-hidden="true">🛒</span>
+    <span class="carrito-fab-contador" id="contadorFab" aria-hidden="true">0</span>
+</button>
+
+<main>
+    <section class="hero" aria-labelledby="h-hero">
+        <div class="hero-contenido">
+            <h2 id="h-hero">Todo lo que necesitas, en un solo lugar 🛒</h2>
+            <p>Encuentra los mejores electrodomésticos para tu hogar a excelentes precios. Precios en MXN con IVA incluido.</p>
+            <a href="#catalogo" class="btn-hero">🛍️ Ver productos</a>
+        </div>
+        <div class="hero-imagenes" aria-hidden="true">
+            <img src="imagenes/productos/refrigerador.jpg" alt="" width="150" height="112">
+            <img src="imagenes/productos/television.jpg" alt="" width="170" height="128">
+            <img src="imagenes/productos/lavadora.jpg" alt="" width="150" height="112">
+        </div>
+    </section>
+
+    <section class="beneficios" aria-label="Ventajas de comprar aquí">
+        <div><span aria-hidden="true">🚚</span><strong>Envío a toda la República</strong><small>Costo y plazo estimado antes de pagar.</small></div>
+        <div><span aria-hidden="true">🛡️</span><strong>Garantía y devoluciones</strong><small>Conforme a la LFPC; sigue tu solicitud con un folio.</small></div>
+        <div><span aria-hidden="true">🔒</span><strong>Sin datos bancarios</strong><small>Pago de prueba: no guardamos tarjetas ni CVV.</small></div>
+    </section>
+
+    <section class="categorias" aria-labelledby="h-cat">
+        <h2 id="h-cat">Compra por categoría</h2>
+        <div id="listaCategorias" class="lista-categorias"></div>
+    </section>
+
+    <section class="filtros" aria-labelledby="h-filtros">
+        <h2 id="h-filtros">🔎 Buscar y filtrar productos</h2>
+
+        <div class="barra-busqueda">
+            <label for="buscador" class="sr-only">Buscar producto</label>
+            <input type="search" id="buscador" placeholder="🔎 Buscar por nombre, marca, modelo o categoría..." autocomplete="off">
+        </div>
+
+        <div class="filtros-contenedor">
+            <div class="filtro">
+                <label for="filtroCategoria">Categoría</label>
+                <select id="filtroCategoria"><option value="todas">Todas las categorías</option></select>
+            </div>
+            <div class="filtro">
+                <label for="filtroPrecio">Precio</label>
+                <select id="filtroPrecio">
+                    <option value="todos">Todos los precios</option>
+                    <option value="0-2000">Hasta $2,000</option>
+                    <option value="2000-5000">$2,000 – $5,000</option>
+                    <option value="5000-10000">$5,000 – $10,000</option>
+                    <option value="10000-9999999">Más de $10,000</option>
+                </select>
+            </div>
+            <div class="filtro">
+                <label for="filtroDisponibilidad">Disponibilidad</label>
+                <select id="filtroDisponibilidad">
+                    <option value="todos">Todos</option>
+                    <option value="disponibles">Solo disponibles</option>
+                    <option value="agotados">Agotados</option>
+                </select>
+            </div>
+            <div class="filtro">
+                <label for="ordenProductos">Ordenar</label>
+                <select id="ordenProductos">
+                    <option value="normal">Normal</option>
+                    <option value="menor">Menor a mayor precio</option>
+                    <option value="mayor">Mayor a menor precio</option>
+                    <option value="popularidad">Más populares</option>
+                </select>
+            </div>
+            <div class="filtro filtro-boton">
+                <button id="limpiarFiltros" type="button" class="btn-secundario">Limpiar filtros</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalogo" aria-labelledby="h-catalogo">
+        <h2 id="h-catalogo" class="sr-only">Catálogo de productos</h2>
+        <p id="resultados" class="resultados" aria-live="polite"></p>
+        <div id="productos"></div>
+        <nav id="paginacion" class="paginacion" aria-label="Paginación del catálogo"></nav>
+    </section>
+</main>
+
+<!-- ============ CARRITO + CHECKOUT (cajón lateral) ============ -->
+<div id="carritoPopup" class="popup drawer">
+    <div class="popup-contenido" role="dialog" aria-modal="true" aria-labelledby="tituloCarrito" tabindex="-1">
+
+        <div class="titulo-carrito">
+            <h2 id="tituloCarrito">🛍️ Carrito</h2>
+            <button id="cerrarCarrito" type="button" data-cerrar aria-label="Cerrar carrito">✖</button>
+        </div>
+
+        <div id="carritoVacio" class="carrito-vacio" hidden>
+            <p>🛒 Tu carrito está vacío.</p>
+            <button type="button" class="btn-siguiente" data-cerrar>Ver productos</button>
+        </div>
+
+        <div id="carritoContenido">
+            <div id="listaCarrito"></div>
+            <p id="erroresCarrito" class="mensaje-error" role="alert" hidden></p>
+
+            <ol class="checkout-pasos" aria-label="Pasos de la compra">
+                <li class="checkout-paso activo" data-paso="1"><span>1</span><small>Envío</small></li>
+                <li class="checkout-linea" aria-hidden="true"></li>
+                <li class="checkout-paso" data-paso="2"><span>2</span><small>Resumen</small></li>
+                <li class="checkout-linea" aria-hidden="true"></li>
+                <li class="checkout-paso" data-paso="3"><span>3</span><small>Pago</small></li>
+            </ol>
+
+            <!-- PASO 1: contacto, entrega y dirección -->
+            <section id="pasoEnvio" aria-labelledby="h-envio">
+                <form id="formEnvio" novalidate>
+                    <h3 id="h-envio">🚚 Contacto y entrega</h3>
+                    <p class="nota">Usaremos estos datos solo para procesar y entregar tu pedido.
+                        <button type="button" class="enlace" data-legal="privacidad">Aviso de privacidad</button></p>
+
+                    <div class="campo"><label for="envNombre">Nombre completo</label>
+                        <input id="envNombre" type="text" autocomplete="name" maxlength="80" required></div>
+                    <div class="campo"><label for="envCorreo">Correo electrónico</label>
+                        <input id="envCorreo" type="email" autocomplete="email" maxlength="120" required></div>
+                    <div class="campo"><label for="envTelefono">Teléfono (10 dígitos)</label>
+                        <input id="envTelefono" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="14" required></div>
+
+                    <fieldset id="metodosEntrega" class="grupo-radios"><legend>Método de entrega</legend></fieldset>
+
+                    <div id="bloqueDireccion">
+                        <div class="campo" id="campoDirGuardada" hidden><label for="envDirGuardada">Dirección guardada</label>
+                            <select id="envDirGuardada"></select></div>
+                        <div class="campo"><label for="envDestinatario">Quién recibe</label>
+                            <input id="envDestinatario" type="text" autocomplete="name" maxlength="80"></div>
+                        <div class="campo"><label for="envCalle">Calle y número</label>
+                            <input id="envCalle" type="text" autocomplete="address-line1" maxlength="120"></div>
+                        <div class="campo"><label for="envColonia">Colonia</label>
+                            <input id="envColonia" type="text" autocomplete="address-line2" maxlength="80"></div>
+                        <div class="campo"><label for="envMunicipio">Municipio o alcaldía</label>
+                            <input id="envMunicipio" type="text" autocomplete="address-level2" maxlength="80"></div>
+                        <div class="campo"><label for="envEstado">Estado</label>
+                            <select id="envEstado" autocomplete="address-level1"><option value="">Elige un estado</option></select></div>
+                        <div class="campo"><label for="codigoPostal">Código postal</label>
+                            <input id="codigoPostal" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="Ej. 88000"></div>
+                        <label class="check" id="etiquetaGuardarDir"><input type="checkbox" id="envGuardar"> Guardar esta dirección en mi cuenta</label>
+                    </div>
+
+                    <p id="infoEnvio" class="info-envio" aria-live="polite"></p>
+                    <button id="btnPaso2" type="submit" class="btn-siguiente">Continuar al resumen ➡️</button>
+                </form>
+            </section>
+
+            <!-- PASO 2: resumen y cupón -->
+            <section id="pasoResumen" aria-labelledby="h-resumen" hidden>
+                <h3 id="h-resumen">🧾 Resumen del pedido</h3>
+                <div id="resumenEntrega" class="resumen-entrega"></div>
+
+                <div class="cupon">
+                    <label for="codigoCupon">🎟️ Cupón de descuento (opcional)</label>
+                    <div class="fila-cupon">
+                        <input type="text" id="codigoCupon" maxlength="20" placeholder="Ej. NACHO10" autocomplete="off">
+                        <button type="button" id="aplicarCupon">Aplicar</button>
+                        <button type="button" id="quitarCupon" class="btn-secundario" hidden>Quitar</button>
+                    </div>
+                    <p id="mensajeCupon" role="status"></p>
+                </div>
+
+                <div class="resumen-compra" id="resumenTotales"></div>
+
+                <div class="botones-paso">
+                    <button type="button" id="atras2" class="btn-secundario">⬅️ Atrás</button>
+                    <button type="button" id="btnPaso3" class="btn-siguiente">Continuar al pago ➡️</button>
+                </div>
+            </section>
+
+            <!-- PASO 3: pago sandbox, términos y confirmación -->
+            <section id="pasoPago" aria-labelledby="h-pago" hidden>
+                <form id="formPago" novalidate>
+                    <h3 id="h-pago">💳 Pago (modo de prueba)</h3>
+                    <div class="aviso-sandbox" role="note">
+                        🔒 Esta tienda <strong>no pide, recibe ni guarda</strong> número de tarjeta, CVV ni contraseñas.
+                        El pago es una <strong>simulación (sandbox)</strong>: no se realiza ningún cobro real.
+                    </div>
+
+                    <fieldset id="metodosPago" class="grupo-radios"><legend>Método de pago</legend></fieldset>
+
+                    <div class="campo">
+                        <label for="simulacion">Resultado de la simulación (solo pruebas)</label>
+                        <select id="simulacion">
+                            <option value="aprobado">Pago aprobado</option>
+                            <option value="rechazado">Pago rechazado (para probar el error)</option>
+                        </select>
+                    </div>
+
+                    <div class="resumen-compra" id="resumenPago"></div>
+
+                    <div class="clickwrap">
+                        <label class="check">
+                            <input type="checkbox" id="aceptoTerminosCheckout">
+                            <span>He leído y acepto los
+                                <button type="button" class="enlace" data-legal="terminos">Términos y condiciones</button>, la
+                                <button type="button" class="enlace" data-legal="devoluciones">política de devoluciones</button> y el
+                                <button type="button" class="enlace" data-legal="privacidad">Aviso de privacidad</button>.</span>
+                        </label>
+                    </div>
+
+                    <p id="errorPago" class="mensaje-error" role="alert" hidden></p>
+
+                    <div class="botones-paso">
+                        <button type="button" id="atras3" class="btn-secundario">⬅️ Atrás</button>
+                        <button id="confirmarCompra" type="submit" class="btn-confirmar">✅ Confirmar y pagar (simulado)</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- ============ INICIAR SESIÓN / REGISTRO / RECUPERAR ============ -->
+<div id="loginPopup" class="popup">
+    <div class="popup-contenido" role="dialog" aria-modal="true" aria-labelledby="tituloLogin" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="tituloLogin">🔐 Cuenta de usuario</h2>
+            <button type="button" data-cerrar aria-label="Cerrar">✖</button>
+        </div>
+        <p id="avisoLogin" class="nota" role="status" hidden></p>
+
+        <div role="tablist" class="tabs" aria-label="Opciones de cuenta">
+            <button type="button" role="tab" id="tabLogin" aria-controls="panelLogin" aria-selected="true">Iniciar sesión</button>
+            <button type="button" role="tab" id="tabRegistro" aria-controls="panelRegistro" aria-selected="false" tabindex="-1">Crear cuenta</button>
+            <button type="button" role="tab" id="tabRecuperar" aria-controls="panelRecuperar" aria-selected="false" tabindex="-1">Olvidé mi contraseña</button>
+        </div>
+
+        <div role="tabpanel" id="panelLogin" aria-labelledby="tabLogin">
+            <form id="formLogin" class="login-form" novalidate>
+                <div class="campo"><label for="usuarioLogin">Usuario o correo</label>
+                    <input type="text" id="usuarioLogin" autocomplete="username" maxlength="120"></div>
+                <div class="campo"><label for="claveLogin">Contraseña</label>
+                    <input type="password" id="claveLogin" autocomplete="current-password" maxlength="128"></div>
+                <p id="mensajeLogin" class="mensaje-form" role="alert"></p>
+                <button type="submit" class="btn-siguiente" id="iniciarSesion">🔐 Iniciar sesión</button>
+            </form>
+        </div>
+
+        <div role="tabpanel" id="panelRegistro" aria-labelledby="tabRegistro" hidden>
+            <form id="formRegistro" class="login-form" novalidate>
+                <div class="campo"><label for="regNombre">Nombre completo</label>
+                    <input type="text" id="regNombre" autocomplete="name" maxlength="80"></div>
+                <div class="campo"><label for="usuarioRegistro">Usuario</label>
+                    <input type="text" id="usuarioRegistro" autocomplete="username" maxlength="30"></div>
+                <div class="campo"><label for="regCorreo">Correo electrónico</label>
+                    <input type="email" id="regCorreo" autocomplete="email" maxlength="120"></div>
+                <div class="campo"><label for="regTelefono">Teléfono (opcional, 10 dígitos)</label>
+                    <input type="tel" id="regTelefono" inputmode="numeric" autocomplete="tel-national" maxlength="14"></div>
+                <div class="campo"><label for="claveRegistro">Contraseña</label>
+                    <input type="password" id="claveRegistro" autocomplete="new-password" maxlength="128" aria-describedby="ayudaClave">
+                    <small id="ayudaClave">Mínimo 8 caracteres, con letras y números.</small></div>
+                <label class="check"><input type="checkbox" id="regMayor"> Declaro que soy mayor de 18 años.</label>
+                <label class="check"><input type="checkbox" id="regPrivacidad"> <span>He leído el
+                    <button type="button" class="enlace" data-legal="privacidad">Aviso de privacidad</button> y acepto el tratamiento de mis datos para crear mi cuenta y procesar mis pedidos.</span></label>
+                <label class="check"><input type="checkbox" id="regMarketing"> (Opcional) Quiero recibir promociones y novedades.</label>
+                <p id="mensajeRegistro" class="mensaje-form" role="alert"></p>
+                <button type="submit" class="btn-siguiente" id="registrarUsuario">📝 Crear mi cuenta</button>
+            </form>
+        </div>
+
+        <div role="tabpanel" id="panelRecuperar" aria-labelledby="tabRecuperar" hidden>
+            <form id="formRecuperar" class="login-form" novalidate>
+                <p class="nota">Recuperación <strong>simulada</strong>: como esta tienda no envía correos reales, el código se mostrará aquí.</p>
+                <div class="campo"><label for="recCorreo">Correo de tu cuenta</label>
+                    <input type="email" id="recCorreo" autocomplete="email" maxlength="120"></div>
+                <button type="submit" class="btn-secundario" id="recSolicitar">Obtener código</button>
+                <p id="recCodigo" class="aviso-sandbox" role="status" hidden></p>
+                <div id="recPaso2" hidden>
+                    <div class="campo"><label for="recCodigoIn">Código de 6 dígitos</label>
+                        <input type="text" id="recCodigoIn" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></div>
+                    <div class="campo"><label for="recClave">Nueva contraseña</label>
+                        <input type="password" id="recClave" autocomplete="new-password" maxlength="128"></div>
+                    <button type="button" class="btn-siguiente" id="recConfirmar">Cambiar contraseña</button>
+                </div>
+                <p id="mensajeRecuperar" class="mensaje-form" role="alert"></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ============ MI CUENTA ============ -->
+<div id="cuentaPopup" class="popup">
+    <div class="popup-contenido ancho" role="dialog" aria-modal="true" aria-labelledby="tituloCuenta" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="tituloCuenta">👤 Mi cuenta</h2>
+            <button type="button" data-cerrar aria-label="Cerrar mi cuenta">✖</button>
+        </div>
+        <div role="tablist" class="tabs" aria-label="Secciones de mi cuenta">
+            <button type="button" role="tab" id="tabPerfil" aria-controls="cuentaPerfil" aria-selected="true">Perfil</button>
+            <button type="button" role="tab" id="tabDirecciones" aria-controls="cuentaDirecciones" aria-selected="false" tabindex="-1">Direcciones</button>
+            <button type="button" role="tab" id="tabPedidos" aria-controls="cuentaPedidos" aria-selected="false" tabindex="-1">Pedidos</button>
+            <button type="button" role="tab" id="tabDevoluciones" aria-controls="cuentaDevoluciones" aria-selected="false" tabindex="-1">Devoluciones</button>
+            <button type="button" role="tab" id="tabMensajes" aria-controls="cuentaMensajes" aria-selected="false" tabindex="-1">Mensajes</button>
+        </div>
+        <div role="tabpanel" id="cuentaPerfil" aria-labelledby="tabPerfil"></div>
+        <div role="tabpanel" id="cuentaDirecciones" aria-labelledby="tabDirecciones" hidden></div>
+        <div role="tabpanel" id="cuentaPedidos" aria-labelledby="tabPedidos" hidden></div>
+        <div role="tabpanel" id="cuentaDevoluciones" aria-labelledby="tabDevoluciones" hidden></div>
+        <div role="tabpanel" id="cuentaMensajes" aria-labelledby="tabMensajes" hidden></div>
+    </div>
+</div>
+
+<!-- ============ SEGUIMIENTO ============ -->
+<div id="seguimientoPopup" class="popup">
+    <div class="popup-contenido" role="dialog" aria-modal="true" aria-labelledby="tituloSeg" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="tituloSeg">📦 Seguimiento de pedido</h2>
+            <button type="button" data-cerrar aria-label="Cerrar seguimiento">✖</button>
+        </div>
+        <form id="formSeguimiento" class="login-form" novalidate>
+            <div class="campo"><label for="segFolio">Folio del pedido</label>
+                <input type="text" id="segFolio" placeholder="Ej. DN-000001" maxlength="20" autocomplete="off"></div>
+            <div class="campo"><label for="segCorreo">Correo usado en la compra</label>
+                <input type="email" id="segCorreo" maxlength="120" autocomplete="email"></div>
+            <button type="submit" class="btn-siguiente">🔎 Consultar</button>
+        </form>
+        <div id="resultadoSeguimiento" aria-live="polite"></div>
+    </div>
+</div>
+
+<!-- ============ FAVORITOS ============ -->
+<div id="favoritosPopup" class="popup">
+    <div class="popup-contenido" role="dialog" aria-modal="true" aria-labelledby="tituloFav" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="tituloFav">❤️ Favoritos</h2>
+            <button id="cerrarFavoritos" type="button" data-cerrar aria-label="Cerrar favoritos">✖</button>
+        </div>
+        <div id="listaFavoritos"></div>
+    </div>
+</div>
+
+<!-- ============ DETALLE DE PRODUCTO ============ -->
+<div id="productoPopup" class="popup">
+    <div class="popup-contenido" role="dialog" aria-modal="true" aria-labelledby="detalleNombre" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="detalleNombre"></h2>
+            <button id="cerrarDetalle" type="button" data-cerrar aria-label="Cerrar detalle del producto">✖</button>
+        </div>
+        <div id="detalleCuerpo"></div>
+    </div>
+</div>
+
+<!-- ============ AYUDA Y POLÍTICAS ============ -->
+<div id="ayudaPopup" class="popup">
+    <div class="popup-contenido ancho" role="dialog" aria-modal="true" aria-labelledby="tituloAyuda" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="tituloAyuda">❓ Ayuda y políticas</h2>
+            <button type="button" data-cerrar aria-label="Cerrar ayuda">✖</button>
+        </div>
+        <div role="tablist" class="tabs" aria-label="Secciones de ayuda">
+            <button type="button" role="tab" id="tabFaq" aria-controls="ayudaFaq" aria-selected="true">Preguntas frecuentes</button>
+            <button type="button" role="tab" id="tabContacto" aria-controls="ayudaContacto" aria-selected="false" tabindex="-1">Contacto</button>
+            <button type="button" role="tab" id="tabPoliticas" aria-controls="ayudaPoliticas" aria-selected="false" tabindex="-1">Políticas</button>
+        </div>
+        <div role="tabpanel" id="ayudaFaq" aria-labelledby="tabFaq"></div>
+        <div role="tabpanel" id="ayudaContacto" aria-labelledby="tabContacto" hidden>
+            <p class="nota">Canales: <span id="datosContacto"></span>. Cada solicitud recibe un folio de atención.</p>
+            <form id="formContacto" class="login-form" novalidate>
+                <div class="campo"><label for="ctNombre">Nombre</label><input id="ctNombre" type="text" maxlength="80" autocomplete="name"></div>
+                <div class="campo"><label for="ctCorreo">Correo para responderte</label><input id="ctCorreo" type="email" maxlength="120" autocomplete="email"></div>
+                <div class="campo"><label for="ctTipo">Tipo de solicitud</label>
+                    <select id="ctTipo"><option>Duda</option><option>Aclaración</option><option>Queja</option><option>Reclamación</option></select></div>
+                <div class="campo"><label for="ctAsunto">Asunto</label><input id="ctAsunto" type="text" maxlength="100"></div>
+                <div class="campo"><label for="ctMensaje">Mensaje</label><textarea id="ctMensaje" rows="4" maxlength="1000"></textarea>
+                    <small>No escribas contraseñas, CVV ni datos completos de tarjeta.</small></div>
+                <p id="mensajeContacto" class="mensaje-form" role="alert"></p>
+                <button type="submit" class="btn-siguiente">📨 Enviar</button>
+            </form>
+        </div>
+        <div role="tabpanel" id="ayudaPoliticas" aria-labelledby="tabPoliticas" hidden></div>
+    </div>
+</div>
+
+<!-- ============ CONFIRMACIÓN DE COMPRA ============ -->
+<div id="confirmacionPopup" class="popup">
+    <div class="popup-contenido" role="dialog" aria-modal="true" aria-labelledby="tituloConfirmacion" tabindex="-1">
+        <h2 id="tituloConfirmacion">🎉 ¡Compra realizada!</h2>
+        <p>Tu pedido de prueba se registró correctamente. Guarda tu folio:</p>
+        <p id="numeroOrden" class="folio-grande"></p>
+        <div id="resumenConfirmacion"></div>
+        <p class="nota">Gracias por comprar en Tiendita Don Nacho 🛒 (tienda de demostración: no se realizó ningún cobro real).</p>
+        <div class="botones-paso">
+            <button id="verSeguimiento" type="button" class="btn-secundario">📦 Ver mi pedido</button>
+            <button id="cerrarConfirmacion" type="button" class="btn-siguiente" data-cerrar>Continuar comprando</button>
+        </div>
+    </div>
+</div>
+
+<div id="procesandoPopup" class="popup" data-fijo>
+    <div class="popup-contenido procesando-compra" role="alertdialog" aria-modal="true" aria-labelledby="tituloProc" tabindex="-1">
+        <div class="spinner" aria-hidden="true"></div>
+        <h2 id="tituloProc">⏳ Procesando pago de prueba...</h2>
+        <p>Estamos validando tu pedido y las existencias. No cierres esta ventana.</p>
+    </div>
+</div>
+
+<!-- ============ MODALES REUTILIZABLES ============ -->
+<div id="modalGeneral" class="popup">
+    <div class="popup-contenido ancho" role="dialog" aria-modal="true" aria-labelledby="modalGeneralTitulo" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="modalGeneralTitulo" class="modal-titulo"></h2>
+            <button type="button" data-cerrar aria-label="Cerrar">✖</button>
+        </div>
+        <div class="modal-cuerpo contenido-legal"></div>
+        <button type="button" class="btn-siguiente" data-cerrar>Entendido</button>
+    </div>
+</div>
+
+<div id="modalGeneral2" class="popup">
+    <div class="popup-contenido ancho" role="dialog" aria-modal="true" aria-labelledby="modalGeneral2Titulo" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="modalGeneral2Titulo" class="modal-titulo"></h2>
+            <button type="button" data-cerrar aria-label="Cerrar">✖</button>
+        </div>
+        <div class="modal-cuerpo contenido-legal"></div>
+    </div>
+</div>
+
+<div id="modalConfirmar" class="popup">
+    <div class="popup-contenido" role="alertdialog" aria-modal="true" aria-labelledby="modalConfirmarTitulo" aria-describedby="confirmarMensaje" tabindex="-1">
+        <h2 id="modalConfirmarTitulo" class="modal-titulo"></h2>
+        <p id="confirmarMensaje"></p>
+        <div class="botones-paso">
+            <button type="button" id="confirmarCancelar" class="btn-secundario">Cancelar</button>
+            <button type="button" id="confirmarOk" class="btn-siguiente">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============ PIE DE PÁGINA LEGAL ============ -->
+<footer class="pie">
+    <div class="pie-grid">
+        <div id="pieEmpresa"></div>
+
+        <div>
+            <h2 class="pie-titulo">Políticas y ayuda</h2>
+            <ul class="pie-lista">
+                <li><button type="button" class="enlace-pie" data-legal="avisoLegal">📄 Aviso legal e identificación</button></li>
+                <li><button type="button" class="enlace-pie" data-legal="terminos">📋 Términos, precios (IVA) y condiciones</button></li>
+                <li><button type="button" class="enlace-pie" data-legal="envios">🚚 Envíos y entrega</button></li>
+                <li><button type="button" class="enlace-pie" data-legal="cancelaciones">❌ Cancelaciones</button></li>
+                <li><button type="button" class="enlace-pie" data-legal="devoluciones">🔄 Devoluciones y cambios</button></li>
+                <li><button type="button" class="enlace-pie" data-legal="garantias">🛡️ Garantías</button></li>
+                <li><button type="button" class="enlace-pie" data-legal="promociones">🏷️ Promociones y cupones</button></li>
+                <li><button type="button" class="enlace-pie" data-legal="quejas">⚖️ Quejas y PROFECO</button></li>
+                <li><button type="button" class="enlace-pie" data-legal="privacidad">🔒 Aviso de privacidad (LFPDPPP)</button></li>
+            </ul>
+        </div>
+
+        <div>
+            <h2 class="pie-titulo">Facturación y enlaces</h2>
+            <button type="button" id="btnFactura" class="btn-pie">Solicitar factura</button>
+            <p class="pie-nota"><button type="button" class="enlace-pie" data-legal="facturacion">¿Cómo funciona la facturación?</button></p>
+            <p class="pie-nota">Redes sociales (enlaces de ejemplo; la tienda ficticia no tiene perfiles reales):</p>
+            <div class="redes-sociales">
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok</a>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a>
+            </div>
+        </div>
+    </div>
+    <div class="pie-copy">
+        © 2026 La Tiendita de Don Nacho — proyecto académico. Información conforme a la LFPC, la LFPDPPP y la NMX-COE-001-SCFI-2018 (revisar texto vigente antes de operar una tienda real).
+    </div>
+</footer>
+
+<!-- ============ BANNER DE ALMACENAMIENTO LOCAL / COOKIES ============ -->
+<div id="cookieBanner" role="region" aria-label="Aviso de almacenamiento local" hidden>
+    <p>Este sitio guarda en tu navegador tu carrito, tu sesión y tus preferencias (almacenamiento local). No usa cookies de publicidad ni de terceros.
+        <button type="button" class="enlace-claro" data-legal="privacidad">Aviso de privacidad</button>.</p>
+    <div class="cookie-botones">
+        <button type="button" id="cookiesAceptar">Entendido</button>
+    </div>
+</div>
+
+<script src="ui.js"></script>
+<script src="datos.js"></script>
+<script src="servidor.js"></script>
+<script src="legal.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

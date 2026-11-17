@@ -1,0 +1,48 @@
+/* admin.css — estilos del panel administrativo (se suma a style.css) */
+body.admin { background: var(--beige); }
+.admin-cabecera {
+    background: linear-gradient(135deg, #ffffff, var(--azul-claro)); color: var(--azul-osc); border-bottom: 1px solid #c3dbec; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.admin-cabecera h1 { margin: 0; font-size: 22px; }
+.admin-sesion { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.admin-sesion button, .admin-sesion .btn-enlace { padding: 9px 14px; border: 0; border-radius: 8px; background: #fff; color: var(--azul-osc); border: 1px solid #b9d5e8 !important; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 14px; }
+.admin-sesion button[hidden] { display: none; }
+
+.admin-acceso { max-width: 460px; margin: 40px auto; background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--sombra); width: 94%; }
+.admin-acceso h2 { margin-top: 0; }
+.acceso-denegado { border-left: 6px solid #a82a2a; }
+
+.admin-app { display: grid; grid-template-columns: 220px 1fr; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 16px; }
+.admin-menu { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; gap: 6px; align-self: start; position: sticky; top: 12px; }
+.admin-menu a {
+    display: block; padding: 11px 14px; background: #fff; border: 1px solid var(--borde); border-radius: 10px; color: var(--texto);
+    text-decoration: none; font-weight: bold; font-size: 14px; text-align: left;
+}
+.admin-menu a[aria-current="page"] { background: var(--azul); color: #fff; border-color: var(--azul); }
+#adminContenido { min-width: 0; background: #fff; border-radius: 16px; padding: 20px; box-shadow: var(--sombra); outline: none; }
+#adminContenido h2 { margin-top: 0; }
+.barra-herramientas { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 14px; }
+.barra-herramientas .campo { margin: 0; min-width: 160px; }
+.barra-herramientas .btn-siguiente { width: auto; margin: 0; padding: 11px 16px; }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kpi { background: var(--crema); border: 1px solid var(--borde); border-radius: 14px; padding: 14px; }
+.kpi small { color: var(--texto-suave); display: block; }
+.kpi strong { font-size: 22px; color: var(--azul-osc); }
+.kpi.alerta strong { color: var(--rojo); }
+.dos-columnas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+.tabla-scroll { overflow-x: auto; }
+.tabla-admin { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tabla-admin th, .tabla-admin td { border-bottom: 1px solid var(--borde); padding: 9px 8px; text-align: left; vertical-align: top; }
+.tabla-admin th { background: var(--beige); white-space: nowrap; }
+.tabla-admin tr.bajo td { background: #fbeaea; }
+.tabla-admin button { padding: 6px 10px; border: 1px solid #64748b; border-radius: 7px; background: #fff; cursor: pointer; font-weight: bold; font-size: 13px; color: var(--texto); margin: 0 4px 4px 0; }
+.tabla-admin button.principal { background: var(--azul); color: #fff; border-color: var(--azul); }
+.etiqueta-alerta { color: var(--rojo); font-weight: bold; }
+
+@media (max-width: 800px) {
+    .admin-app { grid-template-columns: 1fr; }
+    .admin-menu { flex-direction: row; flex-wrap: wrap; position: static; }
+}
+.enlace-bloque { display: block; text-align: center; text-decoration: none; }

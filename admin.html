@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="robots" content="noindex">
+<title>Panel administrativo — Tiendita Don Nacho</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+
+<a class="saltar" href="#adminContenido">Saltar al contenido</a>
+<div id="avisos" aria-live="polite"></div>
+
+<header class="admin-cabecera">
+    <h1>⚙️ Panel administrativo</h1>
+    <div class="admin-sesion">
+        <span id="adminUsuario"></span>
+        <a class="btn-enlace" href="index.html">← Ir a la tienda</a>
+        <button id="adminSalir" type="button" hidden>🚪 Cerrar sesión</button>
+    </div>
+</header>
+
+<!-- Acceso: inicio de sesión o denegación (403) -->
+<section id="adminAcceso" class="admin-acceso" aria-live="polite">
+    <p>Cargando…</p>
+</section>
+
+<div id="adminApp" class="admin-app" hidden>
+    <nav class="admin-menu" aria-label="Secciones del panel" id="adminMenu"></nav>
+    <main id="adminContenido" tabindex="-1"></main>
+</div>
+
+<div id="modalGeneral" class="popup">
+    <div class="popup-contenido ancho" role="dialog" aria-modal="true" aria-labelledby="modalGeneralTitulo" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="modalGeneralTitulo" class="modal-titulo"></h2>
+            <button type="button" data-cerrar aria-label="Cerrar">✖</button>
+        </div>
+        <div class="modal-cuerpo"></div>
+    </div>
+</div>
+
+<div id="modalGeneral2" class="popup">
+    <div class="popup-contenido" role="dialog" aria-modal="true" aria-labelledby="modalGeneral2Titulo" tabindex="-1">
+        <div class="titulo-carrito">
+            <h2 id="modalGeneral2Titulo" class="modal-titulo"></h2>
+            <button type="button" data-cerrar aria-label="Cerrar">✖</button>
+        </div>
+        <div class="modal-cuerpo"></div>
+    </div>
+</div>
+
+<div id="modalConfirmar" class="popup">
+    <div class="popup-contenido" role="alertdialog" aria-modal="true" aria-labelledby="modalConfirmarTitulo" aria-describedby="confirmarMensaje" tabindex="-1">
+        <h2 id="modalConfirmarTitulo" class="modal-titulo"></h2>
+        <p id="confirmarMensaje"></p>
+        <div class="botones-paso">
+            <button type="button" id="confirmarCancelar" class="btn-secundario">Cancelar</button>
+            <button type="button" id="confirmarOk" class="btn-siguiente">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+<script src="ui.js"></script>
+<script src="datos.js"></script>
+<script src="servidor.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
