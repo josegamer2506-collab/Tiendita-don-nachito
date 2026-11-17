@@ -1,0 +1,13 @@
+{
+  "name": "tienda-pruebas",
+  "private": true,
+  "description": "Pruebas automáticas (Playwright + axe-core) de la tienda",
+  "scripts": {
+    "compra": "node t1_compra.js",
+    "seguridad": "node t2_seguridad.js",
+    "operacion": "node t3_operacion.js",
+    "teclado-movil": "node t4_teclado_movil.js",
+    "accesibilidad": "node accesibilidad.js"
+  },
+  "devDependencies": { "axe-core": "4.10.2", "playwright": "^1.45.0" }
+}
