@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Microondas">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8f2e7"/><stop offset="1" stop-color="#deecf6"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bfdcf0"/><stop offset="1" stop-color="#6fa6cc"/></linearGradient>
+<linearGradient id="dark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a6074"/><stop offset="1" stop-color="#2b3d4c"/></linearGradient>
+<linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3e9ee"/></linearGradient>
+</defs>
+<rect width="400" height="300" fill="url(#bg)"/>
+<circle cx="335" cy="55" r="70" fill="#ffffff" opacity=".45"/><circle cx="50" cy="250" r="60" fill="#ffffff" opacity=".35"/>
+<ellipse cx="200" cy="268" rx="130" ry="9" fill="#2f4a5f" opacity=".13"/>
+
+<rect x="48" y="78" width="304" height="170" rx="16" fill="url(#body)" stroke="#d5dde5" stroke-width="2"/>
+<rect x="64" y="94" width="196" height="138" rx="10" fill="url(#dark)" stroke="#aab8c4" stroke-width="3"/>
+<rect x="76" y="106" width="172" height="114" rx="6" fill="#32485a"/>
+<path d="M80 110 L160 110 L110 216 L80 216Z" fill="#fff" opacity=".1"/>
+<ellipse cx="162" cy="206" rx="52" ry="9" fill="#8fbbdb" opacity=".55"/>
+<rect x="276" y="94" width="62" height="28" rx="5" fill="#32485a"/><text x="307" y="114" font-family="Arial" font-size="15" fill="#cfe4f3" text-anchor="middle">1:30</text>
+<rect x="277" y="134" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/><rect x="298" y="134" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/><rect x="319" y="134" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/><rect x="277" y="154" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/><rect x="298" y="154" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/><rect x="319" y="154" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/><rect x="277" y="174" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/><rect x="298" y="174" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/><rect x="319" y="174" width="18" height="14" rx="4" fill="#eef2f5" stroke="#aab8c4"/>
+<rect x="277" y="196" width="60" height="18" rx="6" fill="#8fbbdb"/>
+<rect x="64" y="244" width="24" height="7" rx="3" fill="#aab8c4"/><rect x="312" y="244" width="24" height="7" rx="3" fill="#aab8c4"/>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Aire acondicionado">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8f2e7"/><stop offset="1" stop-color="#deecf6"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bfdcf0"/><stop offset="1" stop-color="#6fa6cc"/></linearGradient>
+<linearGradient id="dark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a6074"/><stop offset="1" stop-color="#2b3d4c"/></linearGradient>
+<linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3e9ee"/></linearGradient>
+</defs>
+<rect width="400" height="300" fill="url(#bg)"/>
+<circle cx="335" cy="55" r="70" fill="#ffffff" opacity=".45"/><circle cx="50" cy="250" r="60" fill="#ffffff" opacity=".35"/>
+<ellipse cx="200" cy="268" rx="130" ry="9" fill="#2f4a5f" opacity=".13"/>
+
+<rect x="52" y="64" width="296" height="96" rx="20" fill="url(#body)" stroke="#d5dde5" stroke-width="2"/>
+<rect x="70" y="90" width="260" height="14" rx="7" fill="#d5dde5"/>
+<path d="M72 120 H328 L318 142 H82Z" fill="#eef2f5" stroke="#aab8c4" stroke-width="2"/>
+<rect x="72" y="76" width="44" height="9" rx="4" fill="#cfe4f3"/>
+<circle cx="312" cy="80" r="4" fill="#8fbbdb"/>
+<g fill="none" stroke="#8fbbdb" stroke-width="5" stroke-linecap="round" opacity=".8">
+<path d="M110 182 q20 12 0 26 t0 26"/><path d="M165 182 q20 12 0 26 t0 26"/><path d="M220 182 q20 12 0 26 t0 26"/><path d="M275 182 q20 12 0 26 t0 26"/></g>
+<g fill="#e9b88a" opacity="0"/>
+</svg>

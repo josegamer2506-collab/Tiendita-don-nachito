@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Freidora de aire">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8f2e7"/><stop offset="1" stop-color="#deecf6"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bfdcf0"/><stop offset="1" stop-color="#6fa6cc"/></linearGradient>
+<linearGradient id="dark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a6074"/><stop offset="1" stop-color="#2b3d4c"/></linearGradient>
+<linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3e9ee"/></linearGradient>
+</defs>
+<rect width="400" height="300" fill="url(#bg)"/>
+<circle cx="335" cy="55" r="70" fill="#ffffff" opacity=".45"/><circle cx="50" cy="250" r="60" fill="#ffffff" opacity=".35"/>
+<ellipse cx="200" cy="268" rx="130" ry="9" fill="#2f4a5f" opacity=".13"/>
+
+<path d="M112 70 Q112 38 150 38 H250 Q288 38 288 70 V228 Q288 262 252 262 H148 Q112 262 112 228Z" fill="url(#body)" stroke="#d5dde5" stroke-width="2"/>
+<rect x="132" y="56" width="136" height="38" rx="9" fill="#32485a"/>
+<text x="200" y="82" font-family="Arial" font-size="17" fill="#cfe4f3" text-anchor="middle">180°C</text>
+<circle cx="150" cy="75" r="4" fill="#e9b88a"/><circle cx="250" cy="75" r="4" fill="#8fbbdb"/>
+<rect x="132" y="112" width="136" height="120" rx="14" fill="url(#dark)" stroke="#aab8c4" stroke-width="3"/>
+<rect x="150" y="128" width="100" height="44" rx="8" fill="#eef2f5" opacity=".16"/>
+<g stroke="#8fbbdb" stroke-width="2.5" stroke-linecap="round" opacity=".7"><line x1="150" y1="196" x2="250" y2="196"/><line x1="150" y1="208" x2="250" y2="208"/></g>
+<rect x="164" y="236" width="72" height="9" rx="4.5" fill="#aab8c4"/>
+<path d="M170 30 q-8 -14 0 -26 M200 30 q-8 -14 0 -26 M230 30 q-8 -14 0 -26" fill="none" stroke="#8fbbdb" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+</svg>

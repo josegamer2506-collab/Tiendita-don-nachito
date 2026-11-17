@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Refrigerador">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8f2e7"/><stop offset="1" stop-color="#deecf6"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bfdcf0"/><stop offset="1" stop-color="#6fa6cc"/></linearGradient>
+<linearGradient id="dark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a6074"/><stop offset="1" stop-color="#2b3d4c"/></linearGradient>
+<linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3e9ee"/></linearGradient>
+</defs>
+<rect width="400" height="300" fill="url(#bg)"/>
+<circle cx="335" cy="55" r="70" fill="#ffffff" opacity=".45"/><circle cx="50" cy="250" r="60" fill="#ffffff" opacity=".35"/>
+<ellipse cx="200" cy="268" rx="130" ry="9" fill="#2f4a5f" opacity=".13"/>
+
+<rect x="132" y="22" width="136" height="244" rx="12" fill="url(#body)" stroke="#d5dde5" stroke-width="2"/>
+<line x1="132" y1="100" x2="268" y2="100" stroke="#aab8c4" stroke-width="3"/>
+<rect x="246" y="48" width="7" height="38" rx="3.5" fill="#aab8c4"/>
+<rect x="246" y="118" width="7" height="62" rx="3.5" fill="#aab8c4"/>
+<rect x="148" y="38" width="64" height="8" rx="4" fill="#cfe4f3"/>
+<rect x="148" y="116" width="40" height="8" rx="4" fill="#cfe4f3"/>
+<circle cx="170" cy="62" r="3" fill="#8fbbdb"/><circle cx="182" cy="62" r="3" fill="#d9c5a3"/>
+<rect x="146" y="262" width="26" height="7" rx="3" fill="#aab8c4"/><rect x="228" y="262" width="26" height="7" rx="3" fill="#aab8c4"/>
+</svg>
